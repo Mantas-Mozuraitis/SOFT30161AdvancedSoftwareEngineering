@@ -3,22 +3,21 @@
 Node::Node(int newKey, std::string newItem) {
 	item = newItem;
 	key = newKey;
-	next = nullptr;
 }
 
 Dictionary::Dictionary() {
-	head = nullptr;
+	root = nullptr;
 }
 
 void Dictionary::insert(int newKey, std::string newItem) {
 	Node* newNode = new Node(newKey, newItem);
-	if (head == nullptr)
+	if (root == nullptr)
 	{
-		head = newNode;
+		root = newNode;
 	}
 	else
 	{
-		Node* currentNode = head;
+		Node* currentNode = root;
 		bool keyFound = false;
 		while (currentNode->next != nullptr)
 		{
@@ -38,7 +37,7 @@ void Dictionary::insert(int newKey, std::string newItem) {
 
 std::string* Dictionary::lookup(int requestedKey)
 {
-	Node* currentNode = head;
+	Node* currentNode = root;
 	if (currentNode == nullptr)
 	{
 		return nullptr;
@@ -59,7 +58,7 @@ std::string* Dictionary::lookup(int requestedKey)
 
 void Dictionary::displayDictionary()
 {
-	Node* currentNode = head;
+	Node* currentNode = root;
 
 	while (currentNode != nullptr)
 	{

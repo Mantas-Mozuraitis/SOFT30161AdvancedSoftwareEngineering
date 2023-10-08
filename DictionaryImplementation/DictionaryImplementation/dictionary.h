@@ -1,19 +1,28 @@
 #include <iostream>
 
 struct Node {
+	//entry data (item and key)
 	std::string item;
 	int key;
-	Node* next;
+	//pointers to descending nodes
+	Node* leftChild = nullptr;
+	Node* rightChild = nullptr;
+	//constructor
 	Node(int, std::string);
 };
 
 class Dictionary {
+
 public:
+
 	Dictionary();
 	void insert(int, std::string);
 	std::string* lookup(int);
 
 	void displayDictionary();//for testing
+
 private:
-	Node* head;
+
+	Node* root = nullptr;
+
 };
