@@ -19,7 +19,8 @@ public:
 	void insert(int, std::string);
 	std::string* lookup(int);
 
-	void displayDictionary();//for testing
+	void displayDictionary(Node*);//for testing
+	void display();//for testing
 
 private:
 

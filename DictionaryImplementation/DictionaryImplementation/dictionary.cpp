@@ -6,7 +6,7 @@ Node::Node(int newKey, std::string newItem) {
 }
 
 Dictionary::Dictionary() {
-	root = nullptr;
+	
 }
 
 void Dictionary::insert(int newKey, std::string newItem) {
@@ -18,19 +18,32 @@ void Dictionary::insert(int newKey, std::string newItem) {
 	else
 	{
 		Node* currentNode = root;
-		bool keyFound = false;
-		while (currentNode->next != nullptr)
+		Node* previousNode = nullptr;
+
+		while (currentNode != nullptr)
 		{
 			if (currentNode->key == newKey)
 			{
 				currentNode->item = newNode->item;
-				keyFound = true;
 			}
-			currentNode = currentNode->next;
+
+			else if (currentNode->key > newKey)
+			{
+				previousNode = currentNode;
+				currentNode = currentNode->leftChild;
+			}
+			else if(currentNode->key < newKey){
+				previousNode = currentNode;
+				currentNode = currentNode->rightChild;
+			}
 		}
-		if (keyFound == false)
+		if (previousNode->key > newKey)
 		{
-			currentNode->next = newNode;
+			previousNode->leftChild = newNode;
+		}
+		else
+		{
+			previousNode->rightChild = newNode;
 		}
 	}
 }
@@ -44,26 +57,44 @@ std::string* Dictionary::lookup(int requestedKey)
 	}
 	else
 	{
-		while (currentNode->next != nullptr)
+		while (currentNode != nullptr)
 		{
-			currentNode = currentNode->next;
-			if (currentNode->key == requestedKey)
+			if (requestedKey == currentNode->key)
 			{
 				return &currentNode->item;
+			}
+			else if (requestedKey < currentNode->key)
+			{
+				currentNode = currentNode->leftChild;
+			}
+			else if (requestedKey > currentNode->key)
+			{
+				currentNode = currentNode->rightChild;
+			}
+			else
+			{
+				return nullptr;
 			}
 		}
 		return nullptr;
 	}
 }
 
-void Dictionary::displayDictionary()
+void Dictionary::displayDictionary(Node* root)
 {
-	Node* currentNode = root;
+	if (root == NULL)
+		return;
+	// print data of node 
+	std::cout << "<" << root->key << ">" << " " << root->item << "\n";
 
-	while (currentNode != nullptr)
-	{
-		std::cout << currentNode->key << " - " << currentNode->item << std::endl;
-		currentNode = currentNode->next;
-	}
+	//going to left node
+	displayDictionary(root->leftChild);
+
+	//going to right
+	displayDictionary(root->rightChild);
+}
+
+void Dictionary::display() {
+	displayDictionary(root);
 }
 
