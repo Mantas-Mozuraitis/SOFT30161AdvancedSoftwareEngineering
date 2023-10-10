@@ -24,5 +24,7 @@ int main() {
 	dict.insert(22, "new");
 	dict.display();
 
+	std::cout << dict.lookup(-4) << std::endl;
+
 
 }

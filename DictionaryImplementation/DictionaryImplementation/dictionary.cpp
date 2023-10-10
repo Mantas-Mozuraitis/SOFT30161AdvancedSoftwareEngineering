@@ -25,6 +25,7 @@ void Dictionary::insert(int newKey, std::string newItem) {
 			if (currentNode->key == newKey)
 			{
 				currentNode->item = newNode->item;
+				return;
 			}
 
 			else if (currentNode->key > newKey)
