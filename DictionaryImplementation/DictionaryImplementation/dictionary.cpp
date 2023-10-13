@@ -52,33 +52,52 @@ void Dictionary::insert(int newKey, std::string newItem) {
 std::string* Dictionary::lookup(int requestedKey)
 {
 	Node* currentNode = root;
-	if (currentNode == nullptr)
+	
+	if (true)
 	{
-		return nullptr;
+
 	}
-	else
-	{
-		while (currentNode != nullptr)
-		{
-			if (requestedKey == currentNode->key)
-			{
-				return &currentNode->item;
-			}
-			else if (requestedKey < currentNode->key)
-			{
-				currentNode = currentNode->leftChild;
-			}
-			else if (requestedKey > currentNode->key)
-			{
-				currentNode = currentNode->rightChild;
-			}
-			else
-			{
-				return nullptr;
-			}
-		}
-		return nullptr;
-	}
+
+	//Iterative implementation
+
+
+	//if (currentNode == nullptr)
+	//{
+	//	return nullptr;
+	//}
+	//else
+	//{
+	//	while (currentNode != nullptr)
+	//	{
+	//		if (requestedKey == currentNode->key)
+	//		{
+	//			return &currentNode->item;
+	//		}
+	//		else if (requestedKey < currentNode->key)
+	//		{
+	//			currentNode = currentNode->leftChild;
+	//		}
+	//		else if (requestedKey > currentNode->key)
+	//		{
+	//			currentNode = currentNode->rightChild;
+	//		}
+	//		else
+	//		{
+	//			return nullptr;
+	//		}
+	//	}
+	//	return nullptr;
+	//}
+}
+
+void Dictionary::lookupWorker(Node* root)
+{
+	if (root == nullptr) return;
+	
+	lookupWorker(root->leftChild);
+
+	lookupWorker(root->rightChild);
+
 }
 
 void Dictionary::displayDictionary(Node* root)

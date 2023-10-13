@@ -18,12 +18,12 @@ public:
 	Dictionary();
 	void insert(int, std::string);
 	std::string* lookup(int);
+	void display();
 
-	void displayDictionary(Node*);//for testing
-	void display();//for testing
 
 private:
-
+	void displayDictionary(Node*);
+	void lookupWorker(Node*);
 	Node* root = nullptr;
 
 };
