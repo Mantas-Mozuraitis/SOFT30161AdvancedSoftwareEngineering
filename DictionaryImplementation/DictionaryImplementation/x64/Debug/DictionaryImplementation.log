@@ -1,5 +1,2 @@
-﻿  dictionary.cpp
-C:\Users\manta\Desktop\GitHubRepos\SOFT30161AdvancedSoftwareEngineering\DictionaryImplementation\DictionaryImplementation\dictionary.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  main.cpp
-  Generating Code...
+﻿  main.cpp
   DictionaryImplementation.vcxproj -> C:\Users\manta\Desktop\GitHubRepos\SOFT30161AdvancedSoftwareEngineering\DictionaryImplementation\x64\Debug\DictionaryImplementation.exe

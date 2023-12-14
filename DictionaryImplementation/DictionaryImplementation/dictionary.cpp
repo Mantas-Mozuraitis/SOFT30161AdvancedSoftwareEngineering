@@ -5,8 +5,10 @@ Node::Node(int newKey, std::string newItem) {
 	key = newKey;
 }
 
-Dictionary::Dictionary() {
-	
+Dictionary::Dictionary() : root(nullptr) {}
+
+Dictionary::~Dictionary() {
+	deepDeleteWorker(root);
 }
 
 void Dictionary::insert(int newKey, std::string newItem) {
@@ -51,53 +53,26 @@ void Dictionary::insert(int newKey, std::string newItem) {
 
 std::string* Dictionary::lookup(int requestedKey)
 {
-	Node* currentNode = root;
-	
-	if (true)
-	{
-
-	}
-
-	//Iterative implementation
-
-
-	//if (currentNode == nullptr)
-	//{
-	//	return nullptr;
-	//}
-	//else
-	//{
-	//	while (currentNode != nullptr)
-	//	{
-	//		if (requestedKey == currentNode->key)
-	//		{
-	//			return &currentNode->item;
-	//		}
-	//		else if (requestedKey < currentNode->key)
-	//		{
-	//			currentNode = currentNode->leftChild;
-	//		}
-	//		else if (requestedKey > currentNode->key)
-	//		{
-	//			currentNode = currentNode->rightChild;
-	//		}
-	//		else
-	//		{
-	//			return nullptr;
-	//		}
-	//	}
-	//	return nullptr;
-	//}
+	return lookupWorker(root, requestedKey);
 }
 
-void Dictionary::lookupWorker(Node* root)
-{
-	if (root == nullptr) return;
-	
-	lookupWorker(root->leftChild);
+std::string* Dictionary::lookupWorker(Node* root, int requestedKey) {
+	if (root == nullptr) {
+		return nullptr;
+	}
 
-	lookupWorker(root->rightChild);
-
+	if (root->key == requestedKey) {
+		// Key found, return a pointer to the item
+		return &(root->item);
+	}
+	else if (root->key > requestedKey) {
+		// Search in the left subtree
+		return lookupWorker(root->leftChild, requestedKey);
+	}
+	else {
+		// Search in the right subtree
+		return lookupWorker(root->rightChild, requestedKey);
+	}
 }
 
 void Dictionary::displayDictionary(Node* root)
@@ -116,5 +91,17 @@ void Dictionary::displayDictionary(Node* root)
 
 void Dictionary::display() {
 	displayDictionary(root);
+}
+
+void Dictionary::deepDeleteWorker(Node* root) {
+	if (root == nullptr) {
+		return;
+	}
+
+	// Delete nodes in post-order traversal
+	deepDeleteWorker(root->leftChild);
+	deepDeleteWorker(root->rightChild);
+
+	delete root;
 }
 

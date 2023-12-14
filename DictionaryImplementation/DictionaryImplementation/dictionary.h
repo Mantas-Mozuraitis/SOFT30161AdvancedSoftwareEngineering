@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 struct Node {
 	//entry data (item and key)
@@ -16,6 +17,7 @@ class Dictionary {
 public:
 
 	Dictionary();
+	~Dictionary();
 	void insert(int, std::string);
 	std::string* lookup(int);
 	void display();
@@ -23,7 +25,8 @@ public:
 
 private:
 	void displayDictionary(Node*);
-	void lookupWorker(Node*);
+	void deepDeleteWorker(Node*);
+	std::string* lookupWorker(Node*, int);
 	Node* root = nullptr;
 
 };
