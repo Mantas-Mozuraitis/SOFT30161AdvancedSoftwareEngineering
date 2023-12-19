@@ -7,9 +7,7 @@ Node::Node(int newKey, std::string newItem) {
 
 Dictionary::Dictionary() : root(nullptr) {}
 
-Dictionary::~Dictionary() {
-	deepDeleteWorker(root);
-}
+
 
 void Dictionary::insert(int newKey, std::string newItem) {
 	Node* newNode = new Node(newKey, newItem);
@@ -93,12 +91,19 @@ void Dictionary::display() {
 	displayDictionary(root);
 }
 
+
+
+
+
+Dictionary::~Dictionary() {
+	deepDeleteWorker(root);
+}
+
 void Dictionary::deepDeleteWorker(Node* root) {
 	if (root == nullptr) {
 		return;
 	}
 
-	// Delete nodes in post-order traversal
 	deepDeleteWorker(root->leftChild);
 	deepDeleteWorker(root->rightChild);
 
